@@ -3,7 +3,6 @@ import { Amplify } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
 import awsExports from './aws-exports';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import '@aws-amplify/ui-react/styles.css';
 import ChatInterface from './ChatInterface';
 import { View, Image, useTheme, Text } from '@aws-amplify/ui-react';
