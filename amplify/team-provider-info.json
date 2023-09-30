@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-pdfupload-dev-102021-authRole",
+      "UnauthRoleArn": "arn:aws:iam::580322568341:role/amplify-pdfupload-dev-102021-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::580322568341:role/amplify-pdfupload-dev-102021-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-pdfupload-dev-102021-deployment",
+      "UnauthRoleName": "amplify-pdfupload-dev-102021-unauthRole",
+      "StackName": "amplify-pdfupload-dev-102021",
+      "StackId": "arn:aws:cloudformation:us-east-1:580322568341:stack/amplify-pdfupload-dev-102021/e1cf1650-55de-11ee-a37d-0e6b02addf03",
+      "AmplifyAppId": "d2786ej505dvec"
+    },
+    "categories": {
+      "auth": {
+        "pdfupload499d41e1": {}
+      }
+    }
+  }
+}

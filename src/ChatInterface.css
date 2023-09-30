@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 62.5%;
+  
+}
+
+body{
+  background:#ecf2ff;
+  color: azure;
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+}
+
+.App1{
+  height: 100vh;
+  display: flex;
+}
+
+.sideBar{
+  flex:2;
+  color: white;
+  background-color: #212529;
+  border-right: 1px solid #ccc;
+
+}
+.upperSide {
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+  
+}
+
+.upperSideTop {
+  display: flex;
+  justify-content: left;
+}
+
+.main{
+  flex:9;
+}
+
+.logoImage{
+  width: 210px;
+  height: auto;
+}
+
+
+/* Message Input Container */
+.messageInputContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 13px;
+  padding: 5px 10px;
+  height: auto;
+  min-height: 38px;
+  width:85%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px; 
+  margin-bottom: 10px;
+  justify-content:space-between;
+  position: relative;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: hidden;
+
+}
+
+.messageInput {
+  flex: 1;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+
+*/
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin:2rem;
+}
+
+
+/* App.css */
+
+/* Chat Messages Container */
+/* Ensure that .main is constrained within .chats */
+.chats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Spacing between messages */
+  padding: 10px;
+  overflow-y: auto; /* Enable scrolling for long conversations */
+  width: 100%; 
+  height: 88%;/* Width of div.main */
+   /* Limit the maximum height of the chat area */
+}
+
+/* Individual Messages */
+.message {
+  max-width: 100%; /* Allow messages to take full width of .chats */
+  word-wrap: break-word;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.received {
+  background-color:#724ee0;
+  align-self: flex-start;
+  color: white;
+  margin-right: auto;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.sent {
+  background-color: white;
+  color: #000;
+  align-self: flex-end;
+  margin-left: auto;
+  font-size: 16px;
+}
+
+.signOutButton {
+  background-color: #212529; /* Red background color */
+  color: white; /* Text color */
+  padding: 12px 24px; /* Padding for the button */
+  border: none; /* Remove border */
+  cursor: pointer; /* Add pointer cursor on hover */
+  border-radius: 5px; /* Rounded corners */
+  font-size:  15px;
+  line-height: 20px;
+  font-weight:600;
+}
+
+/* Add hover effect */
+.signOutButton:hover {
+  background-color: #343a40; /* Darker red on hover */
+}
+
+.lowerSide{
+  padding-left: 2rem;
+}
+
+.sendMessageButton {
+  background-color: rgb(25, 195, 125);/* Blue color for the button */
+  border: none;
+  border-radius: 12px; /* Round the button */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sendMessageButton:hover {
+  background-color:#02ff7c; /* Darker blue color on hover */
+}
+
+/* Styles for the Send icon inside the button */
+.sendMessageButton img {
+  width: 19px;
+  height: 19px;
+  color: #fff; /* White color for the icon */
+}
+
+.userIcon{
+  height: 36px;
+  width: 36px;
+}
+
+
+/* Style for the file input *//* Style for the container */
+.uploadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  
+  border-radius: 8px;
+}
+
+/* Style for the file input */
+.uploadInput {
+  display: none;
+}
+
+/* Style for the file input */
+.uploadInput {
+  display: none;
+}
+
+.uploadInput + label, .uploadButton {
+  cursor: pointer;
+  background-color: #212529;
+  color: #fff;
+  padding: 8px 16px; /* Reduced padding for smaller buttons */
+  border: 1px solid #d9d9e3;
+  
+  font-size: 14px; /* Slightly smaller font size */
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  margin-top: 4px; /* Reduced margin for smaller buttons */
+}
+
+.uploadInput + label:hover, .uploadButton:hover {
+  background-color: #343a40;
+}
+
+.logoImage{
+  padding-right: 0.5rem;
+}
+
+/* Style for the userDetails div */
+.userDetails {
+  display: flex;
+  align-items: center;
+  padding-left: 3.4rem;
+  padding-bottom: 5px;
+}
+
+/* Style for the user icon */
+.userIcon {
+  width: 36px; /* Adjust the width as needed */
+  height: 36px; /* Adjust the height as needed */
+  border-radius: 50%; /* Makes it a circular icon */
+  margin-right: 8px; /* Add some spacing between the icon and name */
+}
+
+/* Style for the user name */
+.userName {
+  font-size: 17px; /* Adjust the font size as needed */
+  font-weight: bold; /* You can change the font weight to your preference */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for long names */
+}
+
+.outBtn {
+  width: 24px; /* Adjust the width as needed */
+  height: 24px; /* Adjust the height as needed */
+  margin-right: 10px; /* Add some spacing between the icon and name */
+}
+
+.warningContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #000;
+}
