@@ -49,7 +49,7 @@ function ChatInterface({ signOut }) {
 
   const callLambdaFunction = async () => {
     try {
-      const response = await API.post('https://nilxar6su0.execute-api.us-east-1.amazonaws.com/prod', '/chatbot', {
+      const response = await API.post('bridge1', '/chatbot', {
         body: { question: messageInput },
       });
 
