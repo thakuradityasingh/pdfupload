@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/chatbot": {
+      "name": "/chatbot",
+      "lambdaFunction": "lambdabot",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

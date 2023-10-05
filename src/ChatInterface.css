@@ -199,12 +199,11 @@ body{
   border-radius: 8px;
 }
 
-/* Style for the file input */
+
 .uploadInput {
   display: none;
 }
 
-/* Style for the file input */
 .uploadInput {
   display: none;
 }
@@ -267,4 +266,57 @@ body{
   align-items: center;
   font-size: 12px;
   color: #000;
+}
+
+.uploadLabel{ 
+  cursor: pointer;
+  background-color: #212529;
+  color: #fff;
+  padding: 8px 16px; /* Reduced padding for smaller buttons */
+  border: 1px solid #d9d9e3;
+  
+  font-size: 14px; /* Slightly smaller font size */
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  margin-top: 4px; /* Reduced margin for smaller buttons */
+  cursor: pointer;
+  background-color: #212529;
+  color: #fff;
+  padding: 8px 16px; /* Reduced padding for smaller buttons */
+  border: 1px solid #d9d9e3;
+  
+  font-size: 14px; /* Slightly smaller font size */
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  margin-top: 4px; /* Reduced margin for smaller buttons */
+}
+ .uploadLabel:hover {
+  background-color: #343a40;
+}
+
+.uploadmsg{
+  font-size: 14px; /* Adjust the font size as needed */
+  font-weight: normal; /* You can change the font weight to your preference */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis;
+  padding-top: 10px;
+  line-height: 20px;
+}
+@media screen and (max-width: 767px) {
+  .App1 {
+    flex-direction: column;
+  }
+
+  .sideBar {
+    flex: 1;
+    height: auto;
+  }
+
+  .main {
+    flex: 1;
+    margin: 1rem;
+  }
+
+  /* Modify other styles for mobile screens here */
 }

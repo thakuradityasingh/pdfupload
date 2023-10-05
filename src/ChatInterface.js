@@ -1,40 +1,84 @@
 import logo from './logo6.png';
 import sendBtn from './send1.svg';
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './ChatInterface.css';
-import { withAuthenticator,useAuthenticator } from '@aws-amplify/ui-react';
+import { withAuthenticator, useAuthenticator } from '@aws-amplify/ui-react';
 import iconImage from './logout1.png';
 import avatar from './user1.png';
-import { Storage } from "@aws-amplify/storage"
+import { Storage } from "@aws-amplify/storage";
+import { API } from 'aws-amplify';
 
+import { v4 as uuidv4 } from 'uuid';
+
+Storage.configure({ region: 'us-east-1' });
 
 function ChatInterface({ signOut }) {
   const { user } = useAuthenticator((context) => [context.user]);
-  const fileInputRef = useRef(null); // Create a ref for the file input
+
   const [uploadedFileName, setUploadedFileName] = useState('');
+  const [docid, setDocid] = useState('');
+  const [chatMessages, setChatMessages] = useState([
+    { text: "Hello! How can I assist you with your PDF needs?", type: "received" },
+  ]);
+  const [messageInput, setMessageInput] = useState('');
 
-  // Function to handle file selection
-  const handleFileSelect = async (e) => {
-    const file = e.target.files[0];
+  const fileInputRef = useRef(null);
 
-    if (file) {
-      try {
-        const fileName = file.name;
-        await Storage.put(fileName, file);
-        setUploadedFileName(fileName);
-        console.log('File uploaded successfully to S3');
-      } catch (error) {
-        console.error('Error uploading file to S3:', error);
-      }
-    } else {
-      console.warn('No file selected');
-    }
-  };
-
-  // Function to open the file input dialog
   const openFileInput = () => {
     fileInputRef.current.click();
   };
+
+  const handleFileSelect = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      try {
+        // Generate a unique file name
+        const fileName = `${docid}_${Date.now()}_${file.name}`;
+
+        // Upload the file to AWS S3
+        await Storage.put(fileName, file);
+
+        // Set the uploaded file name in state
+        setUploadedFileName(file.name);
+        setDocid(uuidv4());
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
+    }
+  };
+
+  const callLambdaFunction = async () => {
+    try {
+      const response = await API.post('https://nilxar6su0.execute-api.us-east-1.amazonaws.com/prod', '/chatbot', {
+        body: { question: messageInput },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const answer = data.answer;
+        setChatMessages([...chatMessages, { text: answer, type: "received" }]);
+      } else {
+        console.error('API response not okay:', response);
+        // Handle API error responses here
+      }
+    } catch (error) {
+      console.error('Error calling API:', error);
+    }
+  };
+
+  const handleSendMessage = () => {
+    if (messageInput.trim() === '') {
+      return;
+    }
+
+    setChatMessages([...chatMessages, { text: messageInput, type: "sent" }]);
+    setMessageInput('');
+
+    // Call the Lambda function with the user's question
+    callLambdaFunction();
+  };
+
+
   return (
     <div className="App1">
       <div className="sideBar">
@@ -47,25 +91,25 @@ function ChatInterface({ signOut }) {
             <div className="uploadContainer">
               {/* Hidden file input */}
               <input
-                ref={fileInputRef} // Connect the ref to the file input
+                ref={fileInputRef}
                 type="file"
                 accept=".pdf"
                 className="uploadInput"
                 onChange={handleFileSelect}
-                id="fileInput" // Add an id for the label to reference
+                id="fileInput"
               />
-              {/* Label that looks like a button */}
-              <label
-                htmlFor="fileInput"
-                className="uploadLabel" // Add a class for styling
-                onClick={openFileInput} // Trigger the file input dialog
-              >
-                Choose PDF File
-              </label>
-              {/* Display the uploaded file name */}
+              <button
+              className="uploadLabel"
+              onClick={openFileInput}
+            >
+              Choose PDF File
+            </button>
+             <div className="uploadmsg" >
               {uploadedFileName && (
                 <p>Uploaded File: {uploadedFileName}</p>
               )}
+             <p> Document id: {docid}</p>
+             </div>
             </div>
           </div>
         </div>
@@ -76,13 +120,13 @@ function ChatInterface({ signOut }) {
               alt="User Icon"
             />
             
-            <p className="userName">@{user.username}</p> {/* Display user's name */}
+            <p className="userName">@{user.username}</p> 
           </div>
         <div className="lowerSide">
         
           <div className="signOutContainer">
             <button className="signOutButton" onClick={signOut}>
-              <img src={iconImage} alt="Icon" className="outBtn"  /> {/* Set the width and height */}
+              <img src={iconImage} alt="Icon" className="outBtn"  /> 
               Log Out
             </button>
           </div>
@@ -90,24 +134,28 @@ function ChatInterface({ signOut }) {
       </div>
       <div className="main">
         <div className="chats">
-          <div className="message received">
-            <p>Hello! How can I assist you with your PDF needs?</p>
-          </div>
-          <div className="message sent">
-            <p>I need help with PDF editing.</p>
-          </div>
-          <div className="message received">
-            <p>The best model available in AWS for PDF chat .</p>
-          </div>
+          {chatMessages.map((message, index) => (
+            <div key={index} className={`message ${message.type}`}>
+              <p>{message.text}</p>
+            </div>
+          ))}
         </div>
         <div className="messageInputContainer">
           <input
             type="text"
             placeholder="Type a message..."
             className="messageInput"
+            value={messageInput}
+            onChange={(e) => setMessageInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSendMessage();
+              }
+            }}
           />
-          <button className="sendMessageButton"><img src={sendBtn} alt="send" /></button>
-          
+          <button className="sendMessageButton" onClick={handleSendMessage}>
+            <img src={sendBtn} alt="send" />
+          </button>
         </div>
         
       </div>

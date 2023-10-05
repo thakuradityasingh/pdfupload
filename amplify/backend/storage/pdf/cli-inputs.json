@@ -1,0 +1,14 @@
+{
+  "resourceName": "pdf",
+  "policyUUID": "f308bc46",
+  "bucketName": "pdfuploads3",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Trigger4ebd9b4c",
+  "groupAccess": {}
+}

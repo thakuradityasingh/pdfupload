@@ -14,6 +14,16 @@
     "categories": {
       "auth": {
         "pdfupload499d41e1": {}
+      },
+      "function": {
+        "S3Trigger4ebd9b4c": {
+          "deploymentBucketName": "amplify-pdfupload-dev-102021-deployment",
+          "s3Key": "amplify-builds/S3Trigger4ebd9b4c-5367554551784e425436-build.zip"
+        },
+        "lambdabot": {}
+      },
+      "storage": {
+        "pdf": {}
       }
     }
   }
