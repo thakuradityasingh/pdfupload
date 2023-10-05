@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
 
-/* App.css */
+
 body, html {
     background-color: white;
     margin: 0;
@@ -8,11 +8,11 @@ body, html {
   }
 
   body.amplify-authenticator {
-    width: 100%; /* Adjust the width as needed */
-    max-width: 400px; /* Adjust the maximum width as needed */
-    margin: 0 auto; /* Center the container horizontally */
-    padding: 20px; /* Add padding for spacing */
+    width: 100%; 
+    max-width: 400px; 
+    margin: 0 auto; 
+    padding: 20px; 
   
-    /* Add more styles as needed */
+    
   }
   

@@ -55,7 +55,6 @@ body{
 }
 
 
-/* Message Input Container */
 .messageInputContainer {
   flex: 1;
   display: flex;
@@ -98,24 +97,19 @@ body{
 }
 
 
-/* App.css */
-
-/* Chat Messages Container */
-/* Ensure that .main is constrained within .chats */
 .chats {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Spacing between messages */
+  gap: 10px; 
   padding: 10px;
-  overflow-y: auto; /* Enable scrolling for long conversations */
+  overflow-y: auto; 
   width: 100%; 
-  height: 88%;/* Width of div.main */
-   /* Limit the maximum height of the chat area */
+  height: 88%;
+   
 }
 
-/* Individual Messages */
 .message {
-  max-width: 100%; /* Allow messages to take full width of .chats */
+  max-width: 100%; 
   word-wrap: break-word;
   padding: 10px;
   border-radius: 15px;
@@ -139,20 +133,19 @@ body{
 }
 
 .signOutButton {
-  background-color: #212529; /* Red background color */
-  color: white; /* Text color */
-  padding: 12px 24px; /* Padding for the button */
-  border: none; /* Remove border */
-  cursor: pointer; /* Add pointer cursor on hover */
-  border-radius: 5px; /* Rounded corners */
+  background-color: #212529; 
+  color: white; 
+  padding: 12px 24px; 
+  border: none; 
+  cursor: pointer; 
+  border-radius: 5px; 
   font-size:  15px;
   line-height: 20px;
   font-weight:600;
 }
 
-/* Add hover effect */
 .signOutButton:hover {
-  background-color: #343a40; /* Darker red on hover */
+  background-color: #343a40; 
 }
 
 .lowerSide{
@@ -160,9 +153,9 @@ body{
 }
 
 .sendMessageButton {
-  background-color: rgb(25, 195, 125);/* Blue color for the button */
+  background-color: rgb(25, 195, 125);
   border: none;
-  border-radius: 12px; /* Round the button */
+  border-radius: 12px; 
   width: 40px;
   height: 40px;
   display: flex;
@@ -173,14 +166,13 @@ body{
 }
 
 .sendMessageButton:hover {
-  background-color:#02ff7c; /* Darker blue color on hover */
+  background-color:#02ff7c; 
 }
 
-/* Styles for the Send icon inside the button */
 .sendMessageButton img {
   width: 19px;
   height: 19px;
-  color: #fff; /* White color for the icon */
+  color: #fff; 
 }
 
 .userIcon{
@@ -189,7 +181,6 @@ body{
 }
 
 
-/* Style for the file input *//* Style for the container */
 .uploadContainer {
   display: flex;
   flex-direction: column;
@@ -212,13 +203,13 @@ body{
   cursor: pointer;
   background-color: #212529;
   color: #fff;
-  padding: 8px 16px; /* Reduced padding for smaller buttons */
+  padding: 8px 16px; 
   border: 1px solid #d9d9e3;
   
-  font-size: 14px; /* Slightly smaller font size */
+  font-size: 14px; 
   border-radius: 4px;
   transition: background-color 0.3s;
-  margin-top: 4px; /* Reduced margin for smaller buttons */
+  margin-top: 4px; 
 }
 
 .uploadInput + label:hover, .uploadButton:hover {
@@ -229,7 +220,7 @@ body{
   padding-right: 0.5rem;
 }
 
-/* Style for the userDetails div */
+
 .userDetails {
   display: flex;
   align-items: center;
@@ -237,27 +228,26 @@ body{
   padding-bottom: 5px;
 }
 
-/* Style for the user icon */
+
 .userIcon {
-  width: 36px; /* Adjust the width as needed */
-  height: 36px; /* Adjust the height as needed */
-  border-radius: 50%; /* Makes it a circular icon */
-  margin-right: 8px; /* Add some spacing between the icon and name */
+  width: 36px; 
+  height: 36px; 
+  border-radius: 50%; 
+  margin-right: 8px; 
 }
 
-/* Style for the user name */
 .userName {
-  font-size: 17px; /* Adjust the font size as needed */
-  font-weight: bold; /* You can change the font weight to your preference */
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflowing text */
-  text-overflow: ellipsis; /* Add ellipsis (...) for long names */
+  font-size: 17px; 
+  font-weight: bold; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .outBtn {
-  width: 24px; /* Adjust the width as needed */
-  height: 24px; /* Adjust the height as needed */
-  margin-right: 10px; /* Add some spacing between the icon and name */
+  width: 24px;
+  height: 24px; 
+  margin-right: 10px; 
 }
 
 .warningContainer{
@@ -272,51 +262,34 @@ body{
   cursor: pointer;
   background-color: #212529;
   color: #fff;
-  padding: 8px 16px; /* Reduced padding for smaller buttons */
+  padding: 8px 16px; 
   border: 1px solid #d9d9e3;
   
-  font-size: 14px; /* Slightly smaller font size */
+  font-size: 14px; 
   border-radius: 4px;
   transition: background-color 0.3s;
-  margin-top: 4px; /* Reduced margin for smaller buttons */
+  margin-top: 4px; 
   cursor: pointer;
   background-color: #212529;
   color: #fff;
-  padding: 8px 16px; /* Reduced padding for smaller buttons */
+  padding: 8px 16px; 
   border: 1px solid #d9d9e3;
   
-  font-size: 14px; /* Slightly smaller font size */
+  font-size: 14px; 
   border-radius: 4px;
   transition: background-color 0.3s;
-  margin-top: 4px; /* Reduced margin for smaller buttons */
+  margin-top: 4px; 
 }
  .uploadLabel:hover {
   background-color: #343a40;
 }
 
 .uploadmsg{
-  font-size: 14px; /* Adjust the font size as needed */
-  font-weight: normal; /* You can change the font weight to your preference */
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflowing text */
+  font-size: 14px; 
+  font-weight: normal; 
+  white-space: nowrap; 
+  overflow: hidden; 
   text-overflow: ellipsis;
   padding-top: 10px;
   line-height: 20px;
-}
-@media screen and (max-width: 767px) {
-  .App1 {
-    flex-direction: column;
-  }
-
-  .sideBar {
-    flex: 1;
-    height: auto;
-  }
-
-  .main {
-    flex: 1;
-    margin: 1rem;
-  }
-
-  /* Modify other styles for mobile screens here */
 }

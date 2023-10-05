@@ -1,10 +1,10 @@
-import logo from './logo6.png';
-import sendBtn from './send1.svg';
+import logo from './assets/logo6.png';
+import sendBtn from './assets/send1.svg';
 import React, { useState, useRef } from 'react';
 import './ChatInterface.css';
 import { withAuthenticator, useAuthenticator } from '@aws-amplify/ui-react';
-import iconImage from './logout1.png';
-import avatar from './user1.png';
+import iconImage from './assets/logout1.png';
+import avatar from './assets/user1.png';
 import { Storage } from "@aws-amplify/storage";
 import { API } from 'aws-amplify';
 

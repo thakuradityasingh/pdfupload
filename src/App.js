@@ -6,7 +6,7 @@ import './App.css';
 import '@aws-amplify/ui-react/styles.css';
 import ChatInterface from './ChatInterface';
 import { View, Image, useTheme, Text } from '@aws-amplify/ui-react';
-import logo from './logo5.png';
+import logo from './assets/logo5.png';
 
 Amplify.configure(awsExports);
 
