@@ -22,7 +22,11 @@
         },
         "lambdabot": {
           "deploymentBucketName": "amplify-pdfupload-dev-102021-deployment",
-          "s3Key": "amplify-builds/lambdabot-4c49594c754858663763-build.zip"
+          "s3Key": "amplify-builds/lambdabot-59563265462f59666134-build.zip"
+        },
+        "lambdamain": {
+          "deploymentBucketName": "amplify-pdfupload-dev-102021-deployment",
+          "s3Key": "amplify-builds/lambdamain-442b4b35644a41633144-build.zip"
         }
       },
       "storage": {
