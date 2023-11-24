@@ -1,21 +1,24 @@
-import boto3
+import json
 
 def lambda_handler(event, context):
-    # Get the bucket name from the event
-    bucket_name = event['Records'][0]['s3']['bucket']['name']
-    
-    # Create an S3 client
-    s3_client = boto3.client('s3')
-    
-    # List all objects in the bucket
-    response = s3_client.list_objects_v2(Bucket=bucket_name)
-    
-    # Extract and print the object keys
-    if 'Contents' in response:
-        object_keys = [obj['Key'] for obj in response['Contents']]
-        print("Uploaded Files:")
-        for key in object_keys:
-            print(key)
-    else:
-        print("No objects found in the bucket.")
+    try:
+        user_question = event.get("question", "").lower()  # Get the user's question and convert it to lowercase for case-insensitive comparison
 
+        if "pdf" in user_question:
+            # If the user's question contains "pdf," respond accordingly
+            response_message = "I can help you with PDFs."
+        else:
+            # For other questions, you can provide a default response
+            response_message = "Hello! How can I assist you?"
+
+        # Return the response
+        response = {"message": response_message}
+        return {
+            'statusCode': 200,
+            'body': json.dumps(response)
+        }
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': str(e)
+        }

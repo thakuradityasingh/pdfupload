@@ -6,11 +6,26 @@ import { withAuthenticator, useAuthenticator } from '@aws-amplify/ui-react';
 import iconImage from './assets/logout1.png';
 import avatar from './assets/user1.png';
 import { Storage } from "@aws-amplify/storage";
-import { API } from 'aws-amplify';
-
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { FaissStore } from "langchain/vectorstores/faiss";
+import { BedrockEmbeddings } from "langchain/embeddings/bedrock";
+import { Bedrock } from "langchain/llms/bedrock";
+import { PdfReader } from "pdfreader";  
 import { v4 as uuidv4 } from 'uuid';
+import { loadQAStuffChain } from "langchain/chains";
+
 
 Storage.configure({ region: 'us-east-1' });
+let vectorStore;
+const bedrockRegion = process.env.bedrock_region;
+
+const client = new Bedrock({ region: bedrockRegion });
+
+const bedrock_embeddings = new BedrockEmbeddings({ client, modelId: 'amazon.titan-embed-text-v1' });
+
+const llm = new Bedrock({ client, modelId: "ai21.j2-ultra-v1" });
+llm.model_kwargs = { maxTokens: 2048, temperature: 0.7, topP: 1.0, stopSequences: [] };
+
 
 function ChatInterface({ signOut }) {
   const { user } = useAuthenticator((context) => [context.user]);
@@ -21,6 +36,7 @@ function ChatInterface({ signOut }) {
     { text: "Hello! How can I assist you with your PDF needs?", type: "received" },
   ]);
   const [messageInput, setMessageInput] = useState('');
+  
 
   const fileInputRef = useRef(null);
 
@@ -32,13 +48,37 @@ function ChatInterface({ signOut }) {
     const file = e.target.files[0];
     if (file) {
       try {
-        // Generate a unique file name
+        
         const fileName = `${docid}_${Date.now()}_${file.name}`;
 
-        // Upload the file to AWS S3
+        
         await Storage.put(fileName, file);
 
-        // Set the uploaded file name in state
+       
+        const file = await Storage.get(fileName);
+        const pdf = new Uint8Array(file);
+        const pdfReader = new PdfReader(pdf);
+        const text = '';
+        for (const page of pdfReader.pages) {
+          text += page.extractText();
+        }
+        const len = (text) => text.length;
+
+        const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000, chunkOverlap: 200, lengthFunction: len });
+        const chunks = textSplitter.splitText(text);
+        const embeddings = bedrock_embeddings();
+        
+
+    try {
+      vectorStore = await FaissStore.fromTexts(chunks, embeddings);  
+    } catch (error) {
+      console.error('Error creating store', error);
+    }
+
+
+       
+
+       
         setUploadedFileName(file.name);
         setDocid(uuidv4());
       } catch (error) {
@@ -47,22 +87,22 @@ function ChatInterface({ signOut }) {
     }
   };
 
-  const callLambdaFunction = async () => {
+  const callQuesAnsFunction = async (query) => {
     try {
-      const response = await API.post('bridge1', '/chatbot', {
-        body: { question: messageInput },
-      });
+        const query = messageInput;
+       
+        const docs = vectorStore.similaritySearch({ query, k: 3 });
 
-      if (response.ok) {
-        const data = await response.json();
-        const answer = data.answer;
+   
+        const stuffChain = loadQAStuffChain(llm);
+        
+    
+        const response =  await stuffChain.call({ inputDocuments: docs, question: query });
+        const answer = response;
         setChatMessages([...chatMessages, { text: answer, type: "received" }]);
-      } else {
-        console.error('API response not okay:', response);
-        // Handle API error responses here
-      }
+      
     } catch (error) {
-      console.error('Error calling API:', error);
+      console.error('Error calling function', error);
     }
   };
 
@@ -74,9 +114,11 @@ function ChatInterface({ signOut }) {
     setChatMessages([...chatMessages, { text: messageInput, type: "sent" }]);
     setMessageInput('');
 
-    // Call the Lambda function with the user's question
-    callLambdaFunction();
+    
+    callQuesAnsFunction();
   };
+
+
 
 
   return (
@@ -115,7 +157,7 @@ function ChatInterface({ signOut }) {
         </div>
           <div className="userDetails">
            <img
-              src={avatar} // Replace with the URL of the user's icon image
+              src={avatar} 
               className="userIcon"
               alt="User Icon"
             />

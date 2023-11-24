@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lambdamain",
+            "lambdabot",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lambdamain",
+                  "lambdabot",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "pdfuploadLambdaRole29d25bb7",
+            "pdfuploadLambdaRolefaef7651",
             {
               "Fn::Join": [
                 "",
                 [
-                  "pdfuploadLambdaRole29d25bb7",
+                  "pdfuploadLambdaRolefaef7651",
                   "-",
                   {
                     "Ref": "env"

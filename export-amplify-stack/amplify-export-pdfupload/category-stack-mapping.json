@@ -1,0 +1,27 @@
+[
+  {
+    "category": "api",
+    "resourceName": "bridge1",
+    "service": "API Gateway"
+  },
+  {
+    "category": "auth",
+    "resourceName": "pdfupload499d41e1",
+    "service": "Cognito"
+  },
+  {
+    "category": "function",
+    "resourceName": "S3Trigger4ebd9b4c",
+    "service": "Lambda"
+  },
+  {
+    "category": "function",
+    "resourceName": "lambdabot",
+    "service": "Lambda"
+  },
+  {
+    "category": "storage",
+    "resourceName": "pdf",
+    "service": "S3"
+  }
+]

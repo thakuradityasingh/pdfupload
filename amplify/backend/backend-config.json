@@ -52,11 +52,6 @@
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
-    },
-    "lambdamain": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
     }
   },
   "parameters": {
@@ -89,22 +84,6 @@
         {
           "category": "function",
           "resourceName": "lambdabot"
-        }
-      ]
-    },
-    "AMPLIFY_function_lambdamain_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "lambdamain"
-        }
-      ]
-    },
-    "AMPLIFY_function_lambdamain_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "lambdamain"
         }
       ]
     }
